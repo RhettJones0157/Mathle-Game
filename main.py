@@ -1,41 +1,68 @@
-print("Try to guess the math equation")
+print("This is Mathle. It's like Wordle for math. Try to guess the math equation!")
 print("Yellow: In the equation, but in the wrong spot.")
 print("Green: In the equation, and in the right spot.")
 print("Unhighlighted: Not in the equation.")
+print()
 import random
-
+import itertools
+gamecode = []
+repeatgenerator = True
 
 
 #randomly generate a 8-character equation
 #have user input an equation
 #hihglight certain characters
 #rpeeat until win
-
-
-
-
-
 #gamecode = 8-charcater code user is trying to guess
 #numba1 operator numba2 = answer
 
-gamecode = []
-operatorlist = ['+', '-', '*', '/']
-operator = random.randint(0, 3)
-numba1 = random.randint(1, 50)
-numba2 = random.randint(1, 50)
-operator1 = operatorlist[operator]
-gamecode.append(str(numba1))
-gamecode.append(operator1)
-gamecode.append(str(numba2))
+#operator, two numbers are chosen
+while repeatgenerator == True:
+  operatorlist = ['+', '-', '*', '/']
+  operator = random.randint(0, 3)
+  operat = operatorlist[operator]
+  if operat == '/':
+    numba1 = random.randint(100, 500)
+  if operat == '-':
+    numba1 = random.randint(50, 100)
+  if operat == '+':
+    numba1 = random.randint(1, 50)
+  if operat == '*':
+    numba1 = random.randint(1, 15)
+  numba2 = random.randint(1, 50)
+  
+  gamecode.append(str(numba1))
+  gamecode.append(operat)
+  gamecode.append(str(numba2))
+  gamecodestring = ''.join(gamecode)
+  gamecodestring.split()
+  answer = eval(gamecodestring)
+    
+  if len(str(numba1)) + len(str(numba2)) + len(str(answer)) != 6:
+    repeatgenerator = True
+    gamecode = []
+    
+  else:  
+    repeatgenerator = False
+    gamecode = []
+    number1 = [int(a) for a in str(numba1)]
+    number2 = [int(b) for b in str(numba2)]
+    answera = [int(c) for c in str(answer)]
+    
+    gamecode.append(number1)
+    gamecode.append(operat)
+    gamecode.append(number2)
+    gamecode.append('=')
+    gamecode.append(answera)
 
-gamecodestring = ''.join(gamecode)
-answer = eval(gamecodestring)
+    gamecodefinal = list(itertools.chain(*gamecode))
+    
+    print(gamecodefinal)
+    
+
 
 #
 
-gamecode.append('=')
-gamecode.append(answer)
-print(gamecode)
 
 
 
